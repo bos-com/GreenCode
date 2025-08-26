@@ -29,7 +29,7 @@ GreenCode is a comprehensive backend system designed to support environmental su
 
 ### 1. Clone and Setup
 ```bash
-git clone <repository-url>
+git clone https://github.com/bos-com/GreenCode.git
 cd GreenCode
 ```
 
