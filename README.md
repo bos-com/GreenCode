@@ -1,143 +1,308 @@
-# ICT-Driven-Agriculture-project
-Welcome to the ICT-Driven Agriculture project, part of the Bugema Open Source Community (BOSC). This project empowers smallholder farmers in Uganda and beyond by providing open-source tools for data-driven farming. We focus on collecting soil, weather, and crop data, integrating IoT, supporting farmer decisions with SMS/USSD and mobile dashboards. 
+# GreenCode Backend
 
-## Project Goals
+A robust Java backend application built with Spring Boot for the GreenCode project - an innovative platform focused on sustainable development and environmental initiatives.
 
-- Collect and analyze agricultural data (soil, weather, crops).
-- Enable IoT integration for sensor-based monitoring.
-- Provide farmer-friendly communication via SMS/USSD.
-- Offer mobile and web dashboards for real-time insights.
+## 🎯 Project Overview
 
-## Tech Stack
+GreenCode is a comprehensive backend system designed to support environmental sustainability projects, green technology initiatives, and eco-friendly business operations. The platform provides robust APIs for managing environmental data, user authentication, and sustainable development metrics.
 
-| **Purpose**            | **Framework/Tool**                     | **Why We Use It**                                                                 |
-|------------------------|---------------------------------------|----------------------------------------------------------------------------------|
-| Backend API            | Django or FastAPI (Python)            | Quick setup, excellent for geospatial and agricultural data.                      |
-| Mobile App            | React Native or Flutter               | Cross-platform for Android, accessible to farmers.                               |
-| GIS/Geo Tools         | GeoDjango, Leaflet.js, OpenLayers     | For farm mapping, soil data, and satellite overlays.                             |
-| IoT Integration       | Node-RED, MQTT + Python (Paho)       | Lightweight for sensor data collection and visualization.                        |
-| Data Visualization    | Grafana and  Superset                   | Real-time dashboards for weather, crop, and soil conditions.                     |
-| SMS/USSD Gateway      | Africa's Talking API, RapidPro, Nexmo | Farmer-friendly communication channels.                                          |
+## 🚀 Technology Stack
 
-**Cross-Cutting Tools**:
-- **GitHub Actions**: CI/CD automation.
-- **Docker**: Consistent, reproducible environments.
-- **Mapbox**: Interactive mapping.
-- **i18n Libraries**: Local language support.
+- **Java 17** - Modern Java with latest features
+- **Spring Boot 3.2.0** - Rapid application development framework
+- **Spring Security** - Authentication and authorization
+- **Spring Data JPA** - Data persistence layer
+- **H2 Database** - In-memory database for development
+- **PostgreSQL** - Production database support
+- **Maven** - Dependency management and build tool
+- **JWT** - JSON Web Token authentication
+- **Swagger/OpenAPI** - API documentation
+- **Spring Actuator** - Application monitoring and metrics
 
-## Setup Instructions
+## 📋 Prerequisites
 
-### Prerequisites
-- **Git**: For version control.
-- **Python 3.8+**: For Django/FastAPI.
-- **Node.js**: For Node-RED or React Native.
-- **Docker**: For containerized setups.
-- **API Keys**: For Africa's Talking, Nexmo, or Mapbox (if used).
+- Java 17 or higher
+- Maven 3.6 or higher
+- PostgreSQL (for production)
 
-### Installation
+## 🛠️ Quick Start
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/BOSC-Bugema/ict-agriculture.git
-   cd ict-agriculture
-   ```
+### 1. Clone and Setup
+```bash
+git clone <repository-url>
+cd GreenCode
+```
 
-2. **Set Up Environment**:
-   - Copy `.env.example` to `.env`:
-     ```bash
-     cp .env.example .env
-     ```
-   - Update `.env` with API keys (e.g., Africa's Talking, Mapbox) and database credentials.
+### 2. Build and Run
+```bash
+mvn clean install
+mvn spring-boot:run
+```
 
-3. **Choose Your Setup**:
-   - **Django Backend**:
-     ```bash
-     pip install -r requirements.txt
-     python manage.py migrate
-     python manage.py runserver
-     ```
-   - **FastAPI Backend**:
-     ```bash
-     pip install -r requirements.txt
-     uvicorn main:app --reload
-     ```
-   - **React Native Mobile App**:
-     ```bash
-     cd mobile
-     npm install
-     npx react-native run-android
-     ```
-   - **Node-RED for IoT**:
-     - Install Node-RED globally: `npm install -g node-red`.
-     - Run: `node-red`.
-     - Access at `http://localhost:1880`.
+The application will start on `http://localhost:8080`
 
-4. **Docker Setup (Alternative)**:
-   ```bash
-   docker-compose up --build
-   ```
+## 🏗️ Project Structure
 
-5. **Configure GIS Tools**:
-   - For GeoDjango, ensure PostgreSQL + PostGIS is installed.
-   - For Leaflet.js/OpenLayers, include in your frontend:
-     ```html
-     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-     ```
+```
+GreenCode/
+├── pom.xml                           # Maven configuration
+├── Dockerfile                        # Containerization
+├── docker-compose.yml                # Multi-service setup
+├── .env.example                      # Environment variables template
+├── .gitignore                        # Git ignore rules
+├── README.md                         # This file
+├── docs/                             # Project documentation
+│   ├── api/                          # API documentation
+│   ├── deployment/                   # Deployment guides
+│   └── architecture/                 # System architecture
+├── scripts/                          # Utility scripts
+│   ├── setup.sh                      # Development setup
+│   ├── deploy.sh                     # Deployment script
+│   └── backup.sh                     # Database backup
+├── config/                           # External configuration
+│   ├── nginx/                        # Nginx configuration
+│   └── docker/                       # Docker configurations
+├── src/
+│   ├── main/
+│   │   ├── java/com/greencode/
+│   │   │   ├── GreenCodeApplication.java    # Main application
+│   │   │   ├── config/                      # Configuration classes
+│   │   │   │   ├── SecurityConfig.java      # Security setup
+│   │   │   │   ├── DatabaseConfig.java      # Database configuration
+│   │   │   │   ├── SwaggerConfig.java       # API documentation
+│   │   │   │   └── CorsConfig.java          # CORS settings
+│   │   │   ├── controller/                  # REST controllers
+│   │   │   │   ├── UserController.java      # User management
+│   │   │   │   ├── AuthController.java      # Authentication
+│   │   │   │   └── HealthController.java    # Health checks
+│   │   │   ├── dto/                         # Data Transfer Objects
+│   │   │   │   ├── UserDto.java             # User DTO
+│   │   │   │   ├── AuthDto.java             # Authentication DTO
+│   │   │   │   └── ResponseDto.java         # Common responses
+│   │   │   ├── entity/                      # JPA entities
+│   │   │   │   ├── BaseEntity.java          # Base entity
+│   │   │   │   ├── User.java                # User entity
+│   │   │   │   └── Project.java             # Project entity
+│   │   │   ├── exception/                   # Exception handling
+│   │   │   │   ├── GlobalExceptionHandler.java
+│   │   │   │   ├── CustomException.java     # Custom exceptions
+│   │   │   │   └── ErrorCode.java           # Error codes
+│   │   │   ├── repository/                  # Data access layer
+│   │   │   │   ├── UserRepository.java      # User repository
+│   │   │   │   └── ProjectRepository.java   # Project repository
+│   │   │   ├── service/                     # Business logic
+│   │   │   │   ├── UserService.java         # User service
+│   │   │   │   ├── AuthService.java         # Authentication service
+│   │   │   │   └── ProjectService.java      # Project service
+│   │   │   ├── util/                        # Utility classes
+│   │   │   │   ├── JwtUtil.java             # JWT utilities
+│   │   │   │   ├── ValidationUtil.java      # Validation helpers
+│   │   │   │   └── DateUtil.java            # Date utilities
+│   │   │   └── constant/                    # Constants
+│   │   │       ├── AppConstants.java        # Application constants
+│   │   │       └── SecurityConstants.java   # Security constants
+│   │   └── resources/
+│   │       ├── application.yml              # Main configuration
+│   │       ├── application-dev.yml          # Development config
+│   │       ├── application-prod.yml         # Production config
+│   │       ├── db/                          # Database scripts
+│   │       │   ├── schema.sql               # Database schema
+│   │       │   └── data.sql                 # Initial data
+│   │       └── static/                      # Static resources
+│   └── test/
+│       ├── java/com/greencode/
+│       │   ├── GreenCodeApplicationTests.java
+│       │   ├── controller/                  # Controller tests
+│       │   ├── service/                     # Service tests
+│       │   └── repository/                  # Repository tests
+│       └── resources/
+│           └── application-test.yml         # Test configuration
+├── logs/                                  # Application logs
+├── data/                                  # Data storage
+└── reports/                               # Generated reports
+```
 
-6. **Set Up SMS/USSD**:
-   - Configure Africa's Talking or Nexmo API in your backend (see `docs/sms_setup.md`).
+## 🔧 Configuration
 
-### Running the Project
+### Environment Variables
+Copy `.env.example` to `.env` and configure:
+```bash
+# Database
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=greencode
+DB_USER=postgres
+DB_PASSWORD=password
 
-- **Backend**: `python manage.py runserver` (Django) or `uvicorn main:app --reload` (FastAPI).
-- **Mobile App**: `npx react-native run-android` or `flutter run`.
-- **Dashboards**: Run Grafana/Superset locally or via Docker (see `docs/dashboard_setup.md`).
-- **IoT**: Access Node-RED at `http://localhost:1880` and configure flows for MQTT sensors.
+# JWT
+JWT_SECRET=your-secret-key
+JWT_EXPIRATION=86400000
 
-### Testing
+# Server
+SERVER_PORT=8080
+SERVER_CONTEXT_PATH=/api
+```
 
-- Run tests: `pytest` (Python) or `npm test` (frontend).
-- Check CI/CD pipelines in GitHub Actions for automated testing.
+### Database Setup
+```bash
+# Development (H2 - automatic)
+# Production (PostgreSQL)
+psql -U postgres -c "CREATE DATABASE greencode;"
+```
 
-## GitHub Configuration
+## 🌐 API Endpoints
 
-We follow BOSC’s standards for secure and collaborative development:
+### Authentication
+- `POST /api/auth/login` - User login
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/refresh` - Refresh token
+- `POST /api/auth/logout` - User logout
 
-- **Security**:
-  - Code Scanning: Enabled via GitHub Advanced Security.
-  - Secret Scanning: Detects credentials in code.
-  - Dependency Review: Blocks vulnerable dependencies.
-  - Branch Protection: Requires reviews and CI checks.
-  - Audit Logs: Tracks all activity.
+### User Management
+- `GET /api/users` - Get all users
+- `GET /api/users/{id}` - Get user by ID
+- `POST /api/users` - Create new user
+- `PUT /api/users/{id}` - Update user
+- `DELETE /api/users/{id}` - Delete user
 
-- **Workflows**:
-  - Template Repositories: Standardized project structure.
-  - GitHub Actions: Automates builds, tests, and deployments.
-  - GitHub Packages: Stores private Docker images.
-  - Collaboration: Clear commit messages (e.g., `feat: add soil data endpoint`) and PR templates.
+### Project Management
+- `GET /api/projects` - Get all projects
+- `GET /api/projects/{id}` - Get project by ID
+- `POST /api/projects` - Create new project
+- `PUT /api/projects/{id}` - Update project
+- `DELETE /api/projects/{id}` - Delete project
 
-- **Onboarding**:
-  - Check `docs/onboarding.md` for GitHub usage guides.
-  - Join our workshops to learn workflows.
-  - Use training repos for practice.
+### Health & Monitoring
+- `GET /api/health` - Application health
+- `GET /api/metrics` - Application metrics
+- `GET /api/info` - Application information
 
-- **Monitoring**:
-  - Track usage reports and audit logs.
-  - Contact support team for issues (see `SUPPORT.md`).
+## 🔐 Security Features
 
-## Contribution Guidelines
+- JWT-based authentication
+- Role-based access control (USER, ADMIN, MODERATOR)
+- Password encryption with BCrypt
+- CORS configuration for frontend integration
+- Input validation and sanitization
+- Rate limiting protection
 
-- Follow our [commit conventions](docs/CONTRIBUTING.md) (e.g., `fix: resolve API bug`).
-- Use PR templates and ensure one approval before merging.
-- Optimize for low-bandwidth and offline-first designs.
-- Include local language support via i18n.
+## 🗄️ Database Schema
 
-## License
+### Core Tables
+- **users** - User accounts and profiles
+- **projects** - Environmental projects
+- **roles** - User roles and permissions
+- **audit_logs** - System activity tracking
 
-This project is licensed under the [MIT License](LICENSE).
+### Key Features
+- Soft delete support
+- Audit trail for all changes
+- Optimized indexes for performance
+- Data validation constraints
 
-## Contact
+## 🧪 Testing
 
-Join us at [https://github.com/BOSC-Bugema](https://github.com/BOSC-Bugema) or email [kmuwanga@bugemauniv.ac.ug](mailto:kmuwanga@bugemauniv.ac.ug).
+```bash
+# Run all tests
+mvn test
 
-Let’s grow agriculture together! 🌱 #OpenSource #ICT4Agriculture #BOSC
+# Run with coverage
+mvn jacoco:report
+
+# Run specific test
+mvn test -Dtest=UserServiceTest
+
+# Integration tests
+mvn verify
+```
+
+## 🚀 Deployment
+
+### Docker Compose
+```bash
+# Start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
+```
+
+### Production Deployment
+```bash
+# Build production JAR
+mvn clean package -Pprod
+
+# Run with production profile
+java -jar -Dspring.profiles.active=prod target/greencode-backend-1.0.0.jar
+```
+
+## 📊 Monitoring
+
+- **Health Checks**: `/api/health`
+- **Metrics**: Prometheus format available
+- **Logging**: Structured logging with logback
+- **Tracing**: Request tracing for debugging
+
+## 🔄 Development Workflow
+
+1. **Feature Development**
+   - Create feature branch: `git checkout -b feature/new-feature`
+   - Implement changes with tests
+   - Submit pull request
+
+2. **Code Quality**
+   - Run tests: `mvn test`
+   - Check style: `mvn checkstyle:check`
+   - Security scan: `mvn dependency:check`
+
+3. **Deployment**
+   - Development: Automatic deployment on push to dev branch
+   - Production: Manual deployment with approval process
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes with tests
+4. Ensure all tests pass
+5. Submit a pull request
+
+### Code Standards
+- Follow Java naming conventions
+- Add Javadoc for public methods
+- Include unit tests for new features
+- Use meaningful commit messages
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **Documentation**: Check the `docs/` folder
+- **Issues**: Create an issue in the repository
+- **Discussions**: Use GitHub Discussions for questions
+- **Email**: Contact the development team
+
+## 🔮 Roadmap
+
+### Phase 1 (Current)
+- [x] Core user management
+- [x] Basic authentication
+- [x] Project management
+- [x] API documentation
+
+### Phase 2 (Next)
+- [ ] Advanced analytics
+- [ ] File management
+- [ ] Notification system
+- [ ] Mobile API optimization
+
+### Phase 3 (Future)
+- [ ] Real-time updates
+- [ ] Advanced reporting
+- [ ] Integration APIs
+- [ ] Performance optimization
