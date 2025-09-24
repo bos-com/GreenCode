@@ -203,12 +203,30 @@ public class Project extends BaseEntity {
         RESEARCH,
         OTHER
     }
+    /**
+     * represents the current status of the program
+     */
 
     public enum ProjectStatus {
+        /** 
+         * project is planned but the work has not yet started
+         */
         PLANNED,
+        /**
+         * project is currently in progress
+         */
         IN_PROGRESS,
+        /**
+         * project is temporarily on hold
+         */
         ON_HOLD,
+        /**
+         * project has been completed successful
+         */
         COMPLETED,
+        /**
+         * project has been cancelled and will not run
+         */
         CANCELLED
     }
 }
