@@ -20,6 +20,17 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * ✅ STEP 3.1 — Update password by email (for password reset flow)
+     */
+    public void updatePasswordByEmail(String email, String encodedPassword) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        user.setPassword(encodedPassword);
+        userRepository.save(user);
+    }
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -37,7 +48,6 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        // Check if username or email already exists
         if (userRepository.existsByUsername(user.getUsername())) {
             throw new RuntimeException("Username already exists");
         }
@@ -45,17 +55,14 @@ public class UserService {
             throw new RuntimeException("Email already exists");
         }
 
-        // Encode password
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        
         return userRepository.save(user);
     }
 
     public User updateUser(Long id, User userDetails) {
         User user = userRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Check if username or email already exists (excluding current user)
         if (userRepository.existsByUsernameOrEmailExcludingId(
                 userDetails.getUsername(), userDetails.getEmail(), id)) {
             throw new RuntimeException("Username or email already exists");
@@ -68,7 +75,6 @@ public class UserService {
         user.setRole(userDetails.getRole());
         user.setIsEnabled(userDetails.getIsEnabled());
 
-        // Only update password if provided
         if (userDetails.getPassword() != null && !userDetails.getPassword().isEmpty()) {
             user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         }
@@ -78,8 +84,8 @@ public class UserService {
 
     public void deleteUser(Long id) {
         User user = userRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("User not found"));
-        
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
         user.setIsActive(false);
         userRepository.save(user);
     }

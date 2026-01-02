@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Password Reset</title>
+  <style>
+    body{font-family:system-ui;margin:40px;max-width:520px}
+    input,button{width:100%;padding:12px;margin:10px 0}
+    .ok{background:#e8fff0;padding:10px;border:1px solid #7ad39a}
+    .err{background:#ffecec;padding:10px;border:1px solid #e08a8a}
+    .muted{color:#555;font-size:14px}
+  </style>
+</head>
+<body>
+  <h2>Request Password Reset</h2>
+  <p class="muted">Enter your email. If it exists, we’ll send a reset link/token.</p>
+
+  <div id="msg"></div>
+
+  <form id="resetRequestForm">
+    <input id="email" type="email" placeholder="Email address" required />
+    <button type="submit">Send reset link</button>
+  </form>
+
+  <p class="muted">
+    Have a token already? <a th:href="@{/auth/reset-validate}">Validate token</a>
+  </p>
+
+  <script>
+    // Because app uses context-path /api, API calls should start with /api
+    const API_BASE = "/api";
+
+    const msgEl = document.getElementById("msg");
+    const form = document.getElementById("resetRequestForm");
+
+    function showMsg(type, text) {
+      msgEl.innerHTML = `<div class="${type}">${text}</div>`;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msgEl.innerHTML = "";
+
+      const email = document.getElementById("email").value.trim();
+
+      try {
+        const res = await fetch(`${API_BASE}/auth/password-reset/request`, {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({ email })
+        });
+
+        if (res.ok) {
+          showMsg("ok", "If the email exists, a reset link/token has been sent.");
+          form.reset();
+        } else {
+          const t = await res.text();
+          showMsg("err", `Request failed: ${t || res.status}`);
+        }
+      } catch (err) {
+        showMsg("err", "Network error. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
