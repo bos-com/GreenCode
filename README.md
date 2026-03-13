@@ -35,3 +35,5 @@ GreenCode/
 └── docker-compose.yml   # Docker orchestration
 
 
+## Getting Started
+Clone this repository and follow the setup instructions below.
