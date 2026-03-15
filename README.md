@@ -34,4 +34,10 @@ GreenCode/
 ├── pom.xml              # Maven build file
 └── docker-compose.yml   # Docker orchestration
 
+## Getting Started
+To set up this project locally:
+1. Clone the repository.
+2. Ensure you have the latest stable version of Python/Node installed.
+3. Run `npm install` or `pip install -r requirements.txt` (depending on the stack).
+4. Start the development server using the appropriate start command.
 
