@@ -35,3 +35,26 @@ GreenCode/
 └── docker-compose.yml   # Docker orchestration
 
 
+
+## Windows Installation Guide
+
+### Prerequisites
+- Install Git from https://git-scm.com/
+- Install Node.js from https://nodejs.org/
+
+### Setup Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/GreenCode.git
+   cd GreenCode
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the application:
+   ```bash
+   npm start
+   ```
