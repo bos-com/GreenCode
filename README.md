@@ -35,3 +35,14 @@ GreenCode/
 └── docker-compose.yml   # Docker orchestration
 
 
+## 🔐 Authentication
+
+Detailed authentication flow documentation is available here:
+
+👉 docs/auth-flow.md
+
+This includes:
+- Login process  
+- Token usage  
+- Password reset flow  
+- Request and response examples  
