@@ -53,8 +53,7 @@ GreenCode/
    ```bash
    npm install
    ```
-
-3. Start the application:
+ 3. Start the application:
    ```bash
    npm start
    ```
