@@ -5,7 +5,7 @@ It consists of a **Spring Boot backend API** and a **React frontend** (new addit
 
 ---
 
-## 🚀 Features
+##Features
 
 ### Backend (Spring Boot)
 - RESTful API
@@ -25,7 +25,7 @@ It consists of a **Spring Boot backend API** and a **React frontend** (new addit
 
 ---
 
-## 📁 Project Structure
+##Project Structure
 GreenCode/
 ├── src/                 # Spring Boot source code
 ├── config/              # external configuration & scripts
