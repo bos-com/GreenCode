@@ -1,37 +1,24 @@
-# GreenCode
+# GreenCode Setup Guide
 
-GreenCode is a full-stack system designed to support environmental, sustainability, and community-impact projects under Bos-Com.  
-It consists of a **Spring Boot backend API** and a **React frontend** (new addition), with future integrations planned.
+## Project Overview
+GreenCode is an ICT platform for empowering sustainable agriculture. It tracks farm data, weather, crops, and uses digital tools to help farmers optimize productivity.
 
----
+## Backend Setup
+1. Clone the repository
+2. Create a virtual environment
+3. Install dependencies
+4. Run the backend server
 
-## 🚀 Features
+## Usage Instructions
+- Access the dashboard at `http://localhost:8000`  
+- Use sample datasets in `data/` for testing  
+- Modify `config.py` for environment variables if needed  
 
-### Backend (Spring Boot)
-- RESTful API
-- JWT/OAuth authentication
-- PostgreSQL database support
-- Centralised configuration (`config/`, `.env`)
-- Dockerized for easy deployment
-- Swagger/OpenAPI documentation
+## Directory Structure
+- backend/ → API and service code  
+- frontend/ → Web dashboard code  
+- data/ → Sample datasets  
+- docs/ → Documentation and guides  
 
-### Frontend (React)
-- Modern React (Create React App)
-- React Router for navigation
-- Axios for API communication
-- Authentication UI (login, password reset flow)
-- Responsive UI with Tailwind CSS (recommended)
-- Ready to connect to backend reset API
-
----
-
-## 📁 Project Structure
-GreenCode/
-├── src/                 # Spring Boot source code
-├── config/              # external configuration & scripts
-├── docs/                # architecture, API docs
-├── greencode-frontend/  # React frontend (new)
-├── pom.xml              # Maven build file
-└── docker-compose.yml   # Docker orchestration
-
-
+## Data Flow
+[User Input] → [Backend APIs] → [Dashboard Visualization]  
