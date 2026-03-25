@@ -33,5 +33,6 @@ GreenCode/
 ├── greencode-frontend/  # React frontend (new)
 ├── pom.xml              # Maven build file
 └── docker-compose.yml   # Docker orchestration
+Updated navigation section for assignment
 
 
