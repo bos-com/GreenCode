@@ -5,7 +5,7 @@ It consists of a **Spring Boot backend API** and a **React frontend** (new addit
 
 ---
 
-## 🚀 Features
+## Features
 
 ### Backend (Spring Boot)
 - RESTful API
@@ -25,13 +25,19 @@ It consists of a **Spring Boot backend API** and a **React frontend** (new addit
 
 ---
 
-## 📁 Project Structure
-GreenCode/
-├── src/                 # Spring Boot source code
-├── config/              # external configuration & scripts
-├── docs/                # architecture, API docs
-├── greencode-frontend/  # React frontend (new)
-├── pom.xml              # Maven build file
-└── docker-compose.yml   # Docker orchestration
+## Project Structure
+- `src/` - Spring Boot source code
+- `config/` - External configuration and scripts
+- `docs/` - Architecture and API docs
+- `scripts/` - Project scripts
+- `BOS/` - Standalone BOS project
+- `LifeLine-ICT/` - Standalone LifeLine-ICT project
+- `OpenCare-Core/` - Standalone OpenCare-Core project
+- `pom.xml` - Maven build file
+- `Dockerfile` - Docker image definition
+- `docker-compose.yml` - Docker orchestration
+- `env.example` - Environment variable template
+- `LICENSE` - License details
+
 
 
