@@ -1,7 +1,7 @@
 # GreenCode
 
-GreenCode is a full-stack system designed to support environmental, sustainability, and community-impact projects under Bos-Com.  
-It consists of a **Spring Boot backend API** and a **React frontend** (new addition), with future integrations planned.
+GreenCode is an API core system designed to support esm_greencode .
+It consists of a **Spring Boot backend API** 
 
 ---
 
@@ -15,15 +15,6 @@ It consists of a **Spring Boot backend API** and a **React frontend** (new addit
 - Dockerized for easy deployment
 - Swagger/OpenAPI documentation
 
-### Frontend (React)
-- Modern React (Create React App)
-- React Router for navigation
-- Axios for API communication
-- Authentication UI (login, password reset flow)
-- Responsive UI with Tailwind CSS (recommended)
-- Ready to connect to backend reset API
-
----
 
 ## 📁 Project Structure
 GreenCode/
