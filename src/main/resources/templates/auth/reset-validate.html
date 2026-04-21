@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Validate Reset Token</title>
+  <style>
+    body{font-family:system-ui;margin:40px;max-width:520px}
+    input,button{width:100%;padding:12px;margin:10px 0}
+    .ok{background:#e8fff0;padding:10px;border:1px solid #7ad39a}
+    .err{background:#ffecec;padding:10px;border:1px solid #e08a8a}
+  </style>
+</head>
+<body>
+  <h2>Validate Reset Token</h2>
+
+  <div id="msg"></div>
+
+  <form id="validateForm">
+    <input id="token" type="text" placeholder="Paste reset token" required />
+    <button type="submit">Validate token</button>
+  </form>
+
+  <p><a th:href="@{/auth/reset-request}">Back to request form</a></p>
+
+  <script>
+    const API_BASE = "/api";
+    const msgEl = document.getElementById("msg");
+
+    function showMsg(type, text) {
+      msgEl.innerHTML = `<div class="${type}">${text}</div>`;
+    }
+
+    document.getElementById("validateForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msgEl.innerHTML = "";
+
+      const token = document.getElementById("token").value.trim();
+
+      try {
+        const res = await fetch(`${API_BASE}/auth/password-reset/validate?token=${encodeURIComponent(token)}`);
+
+        if (res.ok) {
+          showMsg("ok", "Token is valid. Redirecting to set new password...");
+          setTimeout(() => {
+            // open UI page (remember /api context path)
+            window.location.href = `/api/auth/reset-password?token=${encodeURIComponent(token)}`;
+          }, 800);
+        } else {
+          const t = await res.text();
+          showMsg("err", `Invalid/expired token: ${t || res.status}`);
+        }
+      } catch (err) {
+        showMsg("err", "Network error. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>

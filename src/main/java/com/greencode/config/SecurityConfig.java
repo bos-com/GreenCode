@@ -19,22 +19,24 @@ import java.util.Arrays;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf.disable())
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/h2-console/**").permitAll()
-                .requestMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
-                .requestMatchers("/actuator/**").permitAll()
-                .requestMatchers("/api/auth/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .headers(headers -> headers.frameOptions().disable()); // For H2 console
-        
-        return http.build();
-    }
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers(
+        "/auth/reset-request",
+        "/auth/reset-validate",
+        "/auth/reset-password",
+        "/auth/password-reset/**"
+	).permitAll()
+
+            .anyRequest().authenticated()
+        );
+
+    return http.build();
+}
+
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
