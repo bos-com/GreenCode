@@ -33,5 +33,21 @@ GreenCode/
 ├── greencode-frontend/  # React frontend (new)
 ├── pom.xml              # Maven build file
 └── docker-compose.yml   # Docker orchestration
+Issue #56
+### 1. Prerequisites
+- *Java:* Version 17 or higher.
+- *Node.js:* For the React frontend.
+- *Database:* PostgreSQL installed and running.
+- *Build Tool:* Maven.
 
+### 2. Backend Setup
+1. Navigate to the root directory.
+2. Configure your database details in the env.example file and rename it to .env.
+3. Run mvn install to download dependencies.
+4. Run mvn spring-boot:run to start the backend.
+
+### 3. Frontend Setup
+1. Navigate to the greencode-frontend directory.
+2. Run npm install.
+3. Run npm start to launch the UI.
 
