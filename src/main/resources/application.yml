@@ -55,8 +55,13 @@ management:
 
 # JWT Configuration
 jwt:
-  secret: your-secret-key-here-make-it-long-and-secure-in-production
+  secret: greencodeSecretKeyForJWTTokenGenerationThatShouldBeVeryLongAndSecure
   expiration: 86400000 # 24 hours in milliseconds
+
+# Application specific properties
+app:
+  jwtSecret: greencodeSecretKeyForJWTTokenGenerationThatShouldBeVeryLongAndSecure
+  jwtExpirationInMs: 86400000 # 24 hours
 
 # Swagger/OpenAPI
 springdoc:
