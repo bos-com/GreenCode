@@ -35,3 +35,37 @@ GreenCode/
 └── docker-compose.yml   # Docker orchestration
 
 
+## 🛠️ Using Maven Wrapper
+
+This project includes the Maven Wrapper (`mvnw`) to ensure consistent builds across all environments without requiring Maven to be installed globally.
+
+### Why Use Maven Wrapper?
+- ✅ No need to install Maven separately
+- ✅ Everyone uses the same Maven version
+- ✅ Builds are reproducible
+- ✅ Works on CI/CD pipelines
+
+### Commands
+
+```bash
+# On Linux/Mac
+./mvnw clean install
+./mvnw spring-boot:run
+./mvnw test
+
+# On Windows
+mvnw.cmd clean install
+mvnw.cmd spring-boot:run
+mvnw.cmd test
+
+
+### Step 4: Commit and push
+
+```bash
+git add README.md
+git commit -m "docs: add Maven Wrapper usage instructions for issue #27
+
+- Added mvnw commands for Linux/Mac/Windows
+- Explained benefits of using Maven Wrapper
+- Added instructions to generate wrapper if missing"
+git push origin fix/issue-27-maven-wrapper
