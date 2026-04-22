@@ -21,7 +21,7 @@ GreenCode/
 ├── src/                 # Spring Boot source code
 ├── config/              # external configuration & scripts
 ├── docs/                # architecture, API docs
-├── greencode-frontend/  # React frontend (new)
+├── greencode-frontend/  # React frontend (planned - not yet in repo)
 ├── pom.xml              # Maven build file
 └── docker-compose.yml   # Docker orchestration
 
