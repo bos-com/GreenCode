@@ -5,7 +5,7 @@ It consists of a **Spring Boot backend API**
 
 ---
 
-## 🚀 Features
+##Features
 
 ### Backend (Spring Boot)
 - RESTful API
@@ -16,7 +16,7 @@ It consists of a **Spring Boot backend API**
 - Swagger/OpenAPI documentation
 
 
-## 📁 Project Structure
+##Project Structure
 GreenCode/
 ├── src/                 # Spring Boot source code
 ├── config/              # external configuration & scripts
