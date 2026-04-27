@@ -62,9 +62,9 @@ java -jar target/greencode-backend-1.0.0.jar
 
 ## 📊 Monitoring
 
-- **Health**: `/actuator/health`
-- **Metrics**: `/actuator/metrics`
-- **Info**: `/actuator/info`
+- **Health**: `/api/actuator/health`
+- **Metrics**: `/api/actuator/metrics`
+- **Info**: `/api/actuator/info`
 - **Logs**: Check container logs
 
 ## 🆘 Troubleshooting

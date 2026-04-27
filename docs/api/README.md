@@ -44,4 +44,6 @@ curl -X GET http://localhost:8080/api/users \
 
 - **Swagger UI**: Available at `/swagger-ui.html`
 - **OpenAPI Spec**: Available at `/api-docs`
-- **Health Check**: Available at `/health`
+- **Health Check**: Available at `/api/actuator/health`
+- **Actuator Metrics**: Available at `/api/actuator/metrics`
+- **Actuator Info**: Available at `/api/actuator/info`
