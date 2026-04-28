@@ -110,11 +110,49 @@ start_application() {
 }
 
 # Main setup function
+# Create .env file from example if it doesn't exist
+create_env_file() {
+    echo "~$ Setting up environment variables..."
+    
+    if [ ! -f .env ]; then
+        if [ -f env.example ]; then
+            cp env.example .env
+            echo -e "${GREEN}✅ Created .env file from env.example${NC}"
+        elif [ -f .env.example ]; then
+            cp .env.example .env
+            echo -e "${GREEN}✅ Created .env file from .env.example${NC}"
+        else
+            echo -e "${RED}❌ ERROR: No env.example or .env.example file found!${NC}"
+            echo -e "${YELLOW}Please create .env manually with your configuration${NC}"
+        fi
+    else
+        echo -e "${GREEN}✅ .env file already exists${NC}"
+    fi
+}
+# Create .env file from example if it doesn't exist
+create_env_file() {
+    echo "~$ Setting up environment variables..."
+    
+    if [ ! -f .env ]; then
+        if [ -f env.example ]; then
+            cp env.example .env
+            echo -e "${GREEN}✅ Created .env file from env.example${NC}"
+        elif [ -f .env.example ]; then
+            cp .env.example .env
+            echo -e "${GREEN}✅ Created .env file from .env.example${NC}"
+        else
+            echo -e "${RED}❌ ERROR: No env.example or .env.example file found!${NC}"
+            echo -e "${YELLOW}Please create .env manually with your configuration${NC}"
+        fi
+    else
+        echo -e "${GREEN}✅ .env file already exists${NC}"
+    fi
+}
 main() {
     echo "=========================================="
     echo "    GreenCode Development Setup"
     echo "=========================================="
-    
+    create_env_file   
     check_java
     check_maven
     check_docker
