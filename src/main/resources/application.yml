@@ -1,21 +1,21 @@
 spring:
   application:
     name: greencode-backend
-  
+
   profiles:
     active: dev
-  
+
   datasource:
-    url: jdbc:h2:mem:greencode
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:greencode}
     driver-class-name: org.h2.Driver
-    username: sa
-    password: password
-  
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
+
   h2:
     console:
       enabled: true
       path: /h2-console
-  
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -24,11 +24,11 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
-  
+
   security:
     user:
-      name: admin
-      password: admin
+      name: ${SPRING_SECURITY_USER_NAME:admin}
+      password: ${SPRING_SECURITY_USER_PASSWORD:admin}
 
 # Server Configuration
 server:
@@ -55,8 +55,13 @@ management:
 
 # JWT Configuration
 jwt:
-  secret: your-secret-key-here-make-it-long-and-secure-in-production
-  expiration: 86400000 # 24 hours in milliseconds
+  secret: ${JWT_SECRET:greencodeSecretKeyForJWTTokenGenerationThatShouldBeVeryLongAndSecure}
+  expiration: ${JWT_EXPIRATION:86400000} # 24 hours in milliseconds
+
+# Application specific properties
+app:
+  jwtSecret: ${APP_JWT_SECRET:greencodeSecretKeyForJWTTokenGenerationThatShouldBeVeryLongAndSecure}
+  jwtExpirationInMs: ${APP_JWT_EXPIRATION_IN_MS:86400000} # 24 hours
 
 # Swagger/OpenAPI
 springdoc:
