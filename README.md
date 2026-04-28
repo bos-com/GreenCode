@@ -26,3 +26,6 @@ GreenCode/
 └── docker-compose.yml   # Docker orchestration
 
 
+## Contributing
+Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
