@@ -1,4 +1,4 @@
-# GreenCode
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/36c7468d-a775-4f2a-969a-eae176693b01" /># GreenCode
 
 GreenCode is an API core system designed to support esm_greencode .
 It consists of a **Spring Boot backend API** 
@@ -14,6 +14,19 @@ It consists of a **Spring Boot backend API**
 - Centralised configuration (`config/`, `.env`)
 - Dockerized for easy deployment
 - Swagger/OpenAPI documentation
+
+
+## Installation
+
+1. Clone the repository
+2. Navigate to the project directory
+3. Install dependencies
+
+Example:
+
+git clone https://github.com/username/project.git
+cd project
+npm install
 
 
 ## 📁 Project Structure
