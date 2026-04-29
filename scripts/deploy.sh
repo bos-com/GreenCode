@@ -165,7 +165,7 @@ wait_for_startup() {
     local attempt=1
     
     while [ $attempt -le $max_attempts ]; do
-        if curl -s "http://localhost:$PORT/api/health" > /dev/null 2>&1; then
+        if curl -s "http://localhost:$PORT/api/actuator/health" > /dev/null 2>&1; then
             echo -e "${GREEN}✅ Application is running!${NC}"
             return 0
         fi
@@ -195,7 +195,7 @@ show_deployment_info() {
     echo "Access Points:"
     echo "  - Application: http://localhost:$PORT"
     echo "  - API Base: http://localhost:$PORT/api"
-    echo "  - Health Check: http://localhost:$PORT/api/health"
+    echo "  - Health Check: http://localhost:$PORT/api/actuator/health"
     echo "  - Swagger UI: http://localhost:$PORT/api/swagger-ui.html"
     echo ""
     echo "Management:"
