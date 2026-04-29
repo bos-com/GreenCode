@@ -1,0 +1,1 @@
+---\nname: Bug Report\nabout: Report a problem\ntitle: "[BUG] "\nlabels: bug\n---\n\n## Description\n\n## Steps to Reproduce\n\n## Expected Behavior
