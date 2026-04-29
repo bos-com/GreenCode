@@ -1,72 +1,56 @@
 # GreenCode Deployment Guide
 
-This directory contains deployment guides and configurations for different environments.
+This directory contains deployment notes for the current GreenCode backend.
 
-## 🚀 Deployment Options
+## Deployment Options
 
-### 1. Docker Compose (Recommended for Development)
-- **File**: `docker-compose.yml`
-- **Usage**: `docker-compose up -d`
-- **Benefits**: Easy setup, consistent environment
+### Docker Compose
 
-### 2. Docker (Production)
-- **File**: `Dockerfile`
-- **Usage**: `docker build -t greencode-backend .`
-- **Benefits**: Containerized, portable
+- File: `docker-compose.yml`
+- Best for: local full-stack development
+- Command:
 
-### 3. Traditional JAR Deployment
-- **File**: `deploy.sh`
-- **Usage**: `./deploy.sh`
-- **Benefits**: Direct control, no container overhead
+  ```bash
+  cp env.example .env
+  docker-compose up --build -d
+  ```
 
-## 🌍 Environment Configurations
+### Standalone JAR
 
-### Development
-- **Profile**: `dev`
-- **Database**: H2 (in-memory)
-- **Logging**: DEBUG level
-- **Port**: 8080
+- Best for: direct server deployments
+- Build command:
 
-### Production
-- **Profile**: `prod`
-- **Database**: PostgreSQL
-- **Logging**: INFO level
-- **Port**: 8080 (configurable)
+  ```bash
+  mvn clean package
+  java -jar target/greencode-backend-1.0.0.jar
+  ```
 
-### Testing
-- **Profile**: `test`
-- **Database**: H2 (test)
-- **Logging**: WARN level
+### Helper Script
 
-## 📋 Prerequisites
+- File: `scripts/deploy.sh`
+- Best for: scripted local deployments with environment and port options
+
+## Profiles
+
+| Profile | Database | Intended use |
+| --- | --- | --- |
+| `dev` | H2 in-memory | Local development |
+| `staging` | PostgreSQL | Pre-production validation |
+| `prod` | PostgreSQL | Production deployments |
+
+## Prerequisites
 
 - Java 17+
 - Maven 3.6+
-- Docker & Docker Compose
-- PostgreSQL (production)
+- Optional: Docker and Docker Compose
 
-## 🔧 Quick Deploy
+## Health and Monitoring Endpoints
 
-```bash
-# Clone and setup
-git clone <repository>
-cd GreenCode
+- Application health: `/api/actuator/health`
+- Metrics: `/api/actuator/metrics`
+- Info: `/api/actuator/info`
+- Swagger UI: `/api/swagger-ui.html`
 
-# Development with Docker
-docker-compose up -d
-
-# Production build
-mvn clean package -Pprod
-java -jar target/greencode-backend-1.0.0.jar
-```
-
-## 📊 Monitoring
-
-- **Health**: `/actuator/health`
-- **Metrics**: `/actuator/metrics`
-- **Info**: `/actuator/info`
-- **Logs**: Check container logs
-
-## 🆘 Troubleshooting
-
-Common issues and solutions are documented in the troubleshooting guide.
+If the bundled Nginx configuration is used, the proxy also serves `/health` for
+container-level checks. Treat that as a reverse-proxy heartbeat, not as the
+Spring Boot actuator endpoint.

@@ -33,7 +33,7 @@ Resources:
 - /users          - User management
 - /projects       - Project management
 - /auth           - Authentication
-- /health         - System health
+- /api/actuator/health - Application health
 ```
 
 #### 2. HTTP Methods and Semantics
