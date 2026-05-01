@@ -128,7 +128,8 @@ main() {
     echo ""
     echo "Next steps:"
     echo "1. Review and update .env file if needed"
-    echo "2. Run: ./scripts/start.sh to start the application"
+    echo "2. Run: ./scripts/start.sh to start the application, or call start_application if using this script interactively"
+    echo "   Note: setup.sh prepares the environment but does not start the app automatically
     echo "3. Run: ./scripts/stop.sh to stop the application"
     echo "4. Check logs/ directory for application logs"
 }
