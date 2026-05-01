@@ -36,8 +36,24 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    private void validateUserInput(User user, boolean requirePassword) {
+        if (user == null) {
+            throw new IllegalArgumentException("User details must not bre null");
+        }
+        if (user.getUsername() == null || user.getUsername().trim().isEmpty()) {
+            throw new IllegalArgumentException("Username must not be empty");
+        }
+        if (user.getEmail() == null || user.getEmail().trim().isEmpty()) {
+            throw new IllegalArgumentException("Email must not be empty");
+        }
+        if (requirePassword && (user.getPassword() == null || user.getPassword().trim().isEmpty())) {
+            throw new IllegalArgumentException("Password must not be empty");
+        }
+    }
+
     public User createUser(User user) {
         // Check if username or email already exists
+        validateUserInput(user, true);
         if (userRepository.existsByUsername(user.getUsername())) {
             throw new RuntimeException("Username already exists");
         }
@@ -52,6 +68,7 @@ public class UserService {
     }
 
     public User updateUser(Long id, User userDetails) {
+        validateUserInput(userDetails, false);
         User user = userRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("User not found"));
 
