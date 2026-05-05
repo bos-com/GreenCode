@@ -104,3 +104,13 @@ temp/
 # Docker
 .dockerignore
 docker-compose.override.yml
+# Test reports and coverage
+coverage/
+*.lcov
+surefire-reports/
+failsafe-reports/
+
+# Local environment variants
+.env.development
+.env.test
+.env.staging
