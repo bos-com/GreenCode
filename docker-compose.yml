@@ -18,7 +18,7 @@ services:
       - ./data:/app/data
     depends_on:
       - postgres
-      - redis
+      
     networks:
       - greencode-network
     restart: unless-stopped
@@ -41,16 +41,7 @@ services:
     restart: unless-stopped
 
   # Redis Cache
-  redis:
-    image: redis:7-alpine
-    container_name: greencode-redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    networks:
-      - greencode-network
-    restart: unless-stopped
+ 
 
   # Nginx Reverse Proxy
   nginx:
