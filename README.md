@@ -17,12 +17,8 @@ It consists of a **Spring Boot backend API**
 
 
 ## 📁 Project Structure
-GreenCode/
-├── src/                 # Spring Boot source code
-├── config/              # external configuration & scripts
-├── docs/                # architecture, API docs
-├── greencode-frontend/  # React frontend (new)
-├── pom.xml              # Maven build file
-└── docker-compose.yml   # Docker orchestration
 
+The repository currently contains only the backend system.
 
+- Backend: Core application logic and APIs
+- Frontend: Not included in this repository (may be developed separately in the future)
