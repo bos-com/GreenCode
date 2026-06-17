@@ -23,6 +23,7 @@ check_java() {
         # Check if Java 17 or higher
         if [[ "$JAVA_VERSION" == 17* ]] || [[ "$JAVA_VERSION" == 18* ]] || [[ "$JAVA_VERSION" == 19* ]] || [[ "$JAVA_VERSION" == 20* ]] || [[ "$JAVA_VERSION" == 21* ]]; then
             echo -e "${GREEN}✅ Java version is compatible${NC}"
+        
         else
             echo -e "${RED}❌ Java version $JAVA_VERSION is not compatible. Please install Java 17 or higher.${NC}"
             exit 1
@@ -128,9 +129,8 @@ main() {
     echo ""
     echo "Next steps:"
     echo "1. Review and update .env file if needed"
-   echo "2. Run: ./scripts/start.sh to start the application, or call start_application if using this script interactively"
-   echo "2. Run: ./scripts/start.sh to start the application"
-   echo "   Note: setup.sh prepares the environment but does not start the app automatically."
+    echo "2. Run: ./scripts/start.sh to start the application (or call start_application if using this script interactively)"
+    echo "   Note: setup.sh prepares the environment but does not start the app automatically."
     echo "3. Run: ./scripts/stop.sh to stop the application"
     echo "4. Check logs/ directory for application logs"
 }
