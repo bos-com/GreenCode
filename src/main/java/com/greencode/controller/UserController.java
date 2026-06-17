@@ -25,6 +25,12 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping("/active")
+    public ResponseEntity<list<User>> getActiveUsers(){
+        List<User> users = userService.getActiveUsers();
+        return ResponseEntity.ok(users);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         Optional<User> user = userService.getUserById(id);
