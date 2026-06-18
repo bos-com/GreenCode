@@ -1,14 +1,15 @@
+```markdown
 # GreenCode API Guide
 
 This document provides concrete request/response examples for the GreenCode
 backend API. All endpoints are prefixed with `/api` (configured via
 `SERVER_CONTEXT_PATH`).
 
-## Base URL
+## Base URLs
 
-```
-http://localhost:8080/api
-```
+* **Local Development:** `http://localhost:8080/api`
+* **Staging Environment:** `https://staging.greencode.org/api`
+* **Production API:** `https://api.greencode.org/api`
 
 ## Authentication
 
@@ -24,6 +25,7 @@ curl -X POST http://localhost:8080/api/auth/register \
     "firstName": "Jane",
     "lastName": "Doe"
   }'
+
 ```
 
 **Success Response** (`201 Created`):
@@ -37,6 +39,7 @@ curl -X POST http://localhost:8080/api/auth/register \
   "lastName": "Doe",
   "createdAt": "2025-01-15T10:30:00Z"
 }
+
 ```
 
 **Validation Error** (`400 Bad Request`):
@@ -52,6 +55,7 @@ curl -X POST http://localhost:8080/api/auth/register \
     { "field": "password", "message": "must be at least 8 characters" }
   ]
 }
+
 ```
 
 ### Login
@@ -63,6 +67,7 @@ curl -X POST http://localhost:8080/api/auth/login \
     "username": "jane.doe",
     "password": "SecureP@ss1"
   }'
+
 ```
 
 **Success Response** (`200 OK`):
@@ -73,6 +78,7 @@ curl -X POST http://localhost:8080/api/auth/login \
   "tokenType": "Bearer",
   "expiresIn": 3600
 }
+
 ```
 
 **Invalid Credentials** (`401 Unauthorized`):
@@ -84,6 +90,7 @@ curl -X POST http://localhost:8080/api/auth/login \
   "error": "Unauthorized",
   "message": "Invalid username or password"
 }
+
 ```
 
 ### Password Reset Request
@@ -92,6 +99,7 @@ curl -X POST http://localhost:8080/api/auth/login \
 curl -X POST http://localhost:8080/api/auth/password-reset \
   -H "Content-Type: application/json" \
   -d '{ "email": "jane@example.com" }'
+
 ```
 
 **Success Response** (`200 OK`):
@@ -100,12 +108,72 @@ curl -X POST http://localhost:8080/api/auth/password-reset \
 {
   "message": "Password reset instructions sent to your email"
 }
+
+```
+
+### Complete Password Reset (Confirm)
+
+```bash
+curl -X POST http://localhost:8080/api/auth/password-reset/confirm \
+  -H "Content-Type: application/json" \
+  -d '{
+    "token": "7a8b9c0d-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
+    "newPassword": "MyNewSecureP@ss2"
+  }'
+
+```
+
+**Success Response** (`200 OK`):
+
+```json
+{
+  "message": "Password has been successfully updated"
+}
+
+```
+
+**Invalid/Expired Token Error** (`400 Bad Request`):
+
+```json
+{
+  "timestamp": "2025-01-15T10:45:00Z",
+  "status": 400,
+  "error": "Bad Request",
+  "message": "The password reset token is invalid or has expired"
+}
+
+```
+
+## Core Protected Resources
+
+### Get Current User Profile
+
+Demonstrates how to access protected endpoints using the standard `Authorization` header and the token received during login.
+
+```bash
+curl http://localhost:8080/api/users/me \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9..."
+
+```
+
+**Success Response** (`200 OK`):
+
+```json
+{
+  "id": 1,
+  "username": "jane.doe",
+  "email": "jane@example.com",
+  "firstName": "Jane",
+  "lastName": "Doe"
+}
+
 ```
 
 ## Health Check
 
 ```bash
 curl http://localhost:8080/api/actuator/health
+
 ```
 
 **Response** (`200 OK`):
@@ -118,6 +186,7 @@ curl http://localhost:8080/api/actuator/health
     "diskSpace": { "status": "UP" }
   }
 }
+
 ```
 
 > **Note:** The context path means the health endpoint is at
@@ -128,26 +197,43 @@ curl http://localhost:8080/api/actuator/health
 
 All error responses follow a consistent structure:
 
-| Field       | Type   | Description                              |
-|-------------|--------|------------------------------------------|
-| `timestamp` | string | ISO-8601 timestamp of the error          |
-| `status`    | int    | HTTP status code                         |
-| `error`     | string | HTTP status reason phrase                |
-| `message`   | string | Human-readable error description         |
-| `details`   | array  | (optional) Field-level validation errors |
+| Field | Type | Description |
+| --- | --- | --- |
+| `timestamp` | string | ISO-8601 timestamp of the error |
+| `status` | int | HTTP status code |
+| `error` | string | HTTP status reason phrase |
+| `message` | string | Human-readable error description |
+| `details` | array | (optional) Field-level validation errors |
+
+### Common Explicit Error Scenarios
+
+**Duplicate Registration Resource** (`409 Conflict`):
+
+```json
+{
+  "timestamp": "2025-01-15T10:32:00Z",
+  "status": 409,
+  "error": "Conflict",
+  "message": "User registration failed",
+  "details": [
+    { "field": "email", "message": "Email address jane@example.com is already registered" }
+  ]
+}
+
+```
 
 ### Common HTTP Status Codes
 
-| Code | Meaning               | Typical Cause                          |
-|------|-----------------------|----------------------------------------|
-| 200  | OK                    | Successful read or update              |
-| 201  | Created               | Resource created successfully          |
-| 400  | Bad Request           | Validation failure or malformed JSON   |
-| 401  | Unauthorized          | Missing or expired token               |
-| 403  | Forbidden             | Insufficient permissions               |
-| 404  | Not Found             | Resource does not exist                |
-| 409  | Conflict              | Duplicate resource (e.g., username)    |
-| 500  | Internal Server Error | Unexpected server-side failure         |
+| Code | Meaning | Typical Cause |
+| --- | --- | --- |
+| 200 | OK | Successful read or update |
+| 201 | Created | Resource created successfully |
+| 400 | Bad Request | Validation failure or malformed JSON |
+| 401 | Unauthorized | Missing, invalid, or expired token |
+| 403 | Forbidden | Insufficient permissions |
+| 404 | Not Found | Resource does not exist |
+| 409 | Conflict | Duplicate resource (e.g., username/email) |
+| 500 | Internal Server Error | Unexpected server-side failure |
 
 ## Using the Swagger UI
 
@@ -155,10 +241,12 @@ When the application is running, interactive API documentation is available at:
 
 ```
 http://localhost:8080/api/swagger-ui.html
+
 ```
 
 The OpenAPI spec (JSON) can be downloaded from:
 
 ```
 http://localhost:8080/api/v3/api-docs
+
 ```
