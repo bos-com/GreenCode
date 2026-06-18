@@ -463,3 +463,9 @@ GreenCode/
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
+### 🛠️ Frontend Setup & Launch
+To get the React frontend running locally:
+1. Navigate to the frontend directory: `cd greencode-frontend`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm start`
+4. Access the UI at `http://localhost:3000`
