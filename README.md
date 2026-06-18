@@ -5,10 +5,8 @@ GreenCode is a full-stack system designed to support environmental, sustainabili
 It consists of a **Spring Boot backend API** and a **React frontend** (new addition), with future integrations planned.
 
 ## 🎯 Project Overview
----
 
 GreenCode is a comprehensive backend system designed to support environmental sustainability projects, green technology initiatives, and eco-friendly business operations. The platform provides robust APIs for managing environmental data, user authentication, and sustainable development metrics.
-## 🚀 Features
 
 ## 🚀 Technology Stack
 ### Backend (Spring Boot)
@@ -282,27 +280,10 @@ java -jar -Dspring.profiles.active=prod target/greencode-backend-1.0.0.jar
    - Development: Automatic deployment on push to dev branch
    - Production: Manual deployment with approval process
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes with tests
-4. Ensure all tests pass
-5. Submit a pull request
-
-### Code Standards
-- Follow Java naming conventions
-- Add Javadoc for public methods
-- Include unit tests for new features
-- Use meaningful commit messages
 
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-├── src/                 # Spring Boot source code
-├── config/              # external configuration & scripts
-├── docs/                # architecture, API docs
-├── greencode-frontend/  # React frontend (new)
-├── pom.xml              # Maven build file
-└── docker-compose.yml   # Docker orchestration
+
 
