@@ -1,6 +1,4 @@
-
-# GreenCode Backend
-# GreenCode
+# GreenCode API
 
 A robust Java backend application built with Spring Boot for the GreenCode project - an innovative platform focused on sustainable development and environmental initiatives.
 GreenCode is a full-stack system designed to support environmental, sustainability, and community-impact projects under Bos-Com.  
