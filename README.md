@@ -1,12 +1,14 @@
-# GreenCode
+# GreenCode API
 
+A robust Java backend application built with Spring Boot for the GreenCode project - an innovative platform focused on sustainable development and environmental initiatives.
 GreenCode is a full-stack system designed to support environmental, sustainability, and community-impact projects under Bos-Com.  
 It consists of a **Spring Boot backend API** and a **React frontend** (new addition), with future integrations planned.
 
----
+## 🎯 Project Overview
 
-## 🚀 Features
+GreenCode is a comprehensive backend system designed to support environmental sustainability projects, green technology initiatives, and eco-friendly business operations. The platform provides robust APIs for managing environmental data, user authentication, and sustainable development metrics.
 
+## 🚀 Technology Stack
 ### Backend (Spring Boot)
 - RESTful API
 - JWT/OAuth authentication
@@ -15,6 +17,16 @@ It consists of a **Spring Boot backend API** and a **React frontend** (new addit
 - Dockerized for easy deployment
 - Swagger/OpenAPI documentation
 
+- **Java 17** - Modern Java with latest features
+- **Spring Boot 3.2.0** - Rapid application development framework
+- **Spring Security** - Authentication and authorization
+- **Spring Data JPA** - Data persistence layer
+- **H2 Database** - In-memory database for development
+- **PostgreSQL** - Production database support
+- **Maven** - Dependency management and build tool
+- **JWT** - JSON Web Token authentication
+- **Swagger/OpenAPI** - API documentation
+- **Spring Actuator** - Application monitoring and metrics
 ### Frontend (React)
 - Modern React (Create React App)
 - React Router for navigation
@@ -23,6 +35,7 @@ It consists of a **Spring Boot backend API** and a **React frontend** (new addit
 - Responsive UI with Tailwind CSS (recommended)
 - Ready to connect to backend reset API
 
+## 📋 Prerequisites
 ---
 
 ## 🚀 Quick Start
