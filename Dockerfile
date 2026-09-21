@@ -1,34 +1,24 @@
-# Use OpenJDK 17 as base image
-FROM openjdk:17-jdk-slim
+# Build stage (Maven + JDK 17)
+FROM maven:3.9-eclipse-temurin-17 AS build
 
-# Set working directory
 WORKDIR /app
 
-# Copy Maven wrapper and pom.xml
-COPY mvnw .
-COPY .mvn .mvn
+# Copy Maven descriptor first for better layer caching
 COPY pom.xml .
+RUN mvn -B -q -DskipTests dependency:go-offline
 
-# Make Maven wrapper executable
-RUN chmod +x mvnw
-
-# Download dependencies (this layer will be cached if pom.xml doesn't change)
-RUN ./mvnw dependency:go-offline -B
-
-# Copy source code
+# Copy sources and build
 COPY src src
+RUN mvn -B -DskipTests package
 
-# Build the application
-RUN ./mvnw clean package -DskipTests
-
-# Create a new stage for runtime
-FROM openjdk:17-jre-slim
+# Runtime stage (JRE 17)
+FROM eclipse-temurin:17-jre
 
 # Set working directory
 WORKDIR /app
 
 # Copy the built JAR from the build stage
-COPY --from=0 /app/target/*.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 # Expose port
 EXPOSE 8080
